@@ -72,6 +72,10 @@ console.log(User2.ageEguality(pippos, gerrys));
 // Nella classe che utilizzerai per creare questi oggetti aggiungi anche un metodo che restituisca true se due animali condividono lo stesso padrone.
 // Crea, raccogliendo i dati dal form, diverse istanze della classe Pet e mostrane i dati in una lista sottostante.
 
+const form = document.getElementById("petRegistrationaForm");
+const petList = document.getElementById("petList");
+const petArray = [];
+
 class CreatePet {
   constructor(petName, ownerName, species, breed) {
     this.petName = petName;
@@ -79,11 +83,17 @@ class CreatePet {
     this.species = species;
     this.breed = breed;
   }
-}
 
-const form = document.getElementById("petRegistrationaForm");
-const petList = document.getElementById("petList");
-const petArray = [];
+  comparePetOwners(petArray) {
+    for (let i = 0; i < petArray.length; i++) {
+      if (petArray[i][1] === this.ownerName) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+}
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -95,6 +105,7 @@ form.addEventListener("submit", (event) => {
 
   const lookTheresACutePet = new CreatePet(petName, ownerName, species, breed);
 
+  console.log(lookTheresACutePet.comparePetOwners(petArray));
   petArray.push([petName, ownerName, species, breed]);
   addPetToList(lookTheresACutePet);
   form.reset();
@@ -106,5 +117,3 @@ const addPetToList = (pet) => {
   petItem.textContent = `Pet Name: ${pet.petName}, Owner Name: ${pet.ownerName}, Species: ${pet.species}, Breed: ${pet.breed}`;
   petList.appendChild(petItem);
 };
-
-console.log(petArray);
