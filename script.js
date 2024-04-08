@@ -88,20 +88,19 @@ class CreatePet {
     for (let i = 0; i < petArray.length; i++) {
       if (petArray[i][1] === this.ownerName) {
         return true;
-      } else {
-        return false;
       }
     }
+    return false;
   }
 }
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const petName = document.querySelector("#petName").value;
-  const ownerName = document.querySelector("#ownerName").value;
-  const species = document.querySelector("#species").value;
-  const breed = document.querySelector("#breed").value;
+  const petName = document.querySelector("#petName").value.toLowerCase();
+  const ownerName = document.querySelector("#ownerName").value.toLowerCase();
+  const species = document.querySelector("#species").value.toLowerCase();
+  const breed = document.querySelector("#breed").value.toLowerCase();
 
   const lookTheresACutePet = new CreatePet(petName, ownerName, species, breed);
 
